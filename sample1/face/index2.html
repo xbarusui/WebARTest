@@ -43,12 +43,17 @@ stampNose.src = "nose.png";                             // ★鼻のスタンプ
 stampEars.src = "ears.png";                             // ★耳のスタンプ画像のファイル名
 
 // getUserMedia によるカメラ映像の取得
-var media = navigator.mediaDevices.getUserMedia({       // メディアデバイスを取得
-  video: {facingMode: "user"},                          // カメラの映像を使う（スマホならインカメラ）
-  audio: false                                          // マイクの音声は使わない
-});
-media.then((stream) => {                                // メディアデバイスが取得できたら
-  video.src = window.URL.createObjectURL(stream);       // video 要素にストリームを渡す
+navigator.mediaDevices.getUserMedia(constraints)
+  .then((stream) => {
+    video.srcObject = stream;
+    // 動画のメタ情報のロードが完了したら実行
+    video.onloadedmetadata = function() {
+      adjustVideo();
+      startTracking();
+    };
+  })
+  .catch((err) => {
+    window.alert(err.name + ': ' + err.message);
 });
 
 // clmtrackr の開始
