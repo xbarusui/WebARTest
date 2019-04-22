@@ -1,0 +1,27 @@
+newmtl Default
+Ka 0 0 0
+Kd 0.862745 0.847059 0.113725
+Ks 0 0 0
+Ni 1
+Ns 400
+Tf 1 1 1
+d 1
+
+newmtl kuchi
+Ka 0 0 0
+Kd 0.839216 0.313726 0.113725
+Ks 0 0 0
+Ni 1
+Ns 400
+Tf 1 1 1
+d 1
+
+newmtl me
+Ka 0 0 0
+Kd 0 0 0
+Ks 0 0 0
+Ni 1
+Ns 400
+Tf 1 1 1
+d 1
+
