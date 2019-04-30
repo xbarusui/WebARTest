@@ -11,7 +11,7 @@ var stampEars = new Image();                            // ★耳のスタンプ
 var stampEye = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
 stampNose.src = "nose.png";                             // ★鼻のスタンプ画像のファイル名
 stampEars.src = "ears.png";                             // ★耳のスタンプ画像のファイル名
-stampEye.src = "aa.png"
+stampEye.src = "frikora.png"
 
 var isTracking = false;
 var isHappy = false;
