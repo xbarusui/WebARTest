@@ -9,7 +9,7 @@ var happyText = document.getElementById('happyText');
 var stampNose = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
 var stampEars = new Image();                            // ★耳のスタンプ画像を入れる Image オブジェクト
 var stampEye = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
-stampNose.src = "nose.png";                             // ★鼻のスタンプ画像のファイル名
+stampNose.src = "frikora.png";                             // ★鼻のスタンプ画像のファイル名
 stampEars.src = "ears.png";                             // ★耳のスタンプ画像のファイル名
 stampEye.src = "frikora.png"
 
@@ -101,12 +101,33 @@ function displaySnapshot() {
 
 function drawLoop() {
 
+//  requestAnimationFrame(drawLoop);
+
+//  var positions = track.getCurrentPosition();          // 顔部品の現在位置の取得
+  // 描画をクリア
+//  context.clearRect(0, 0, canvas.width, canvas.height);
+  // videoをcanvasにトレース
+//  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  // canvasの情報を取得
+//  imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+//  if (track.getCurrentPosition()) {
+    // 顔のパーツの現在位置が存在
+//    determineEmotion();
+//    if (isHappy) {
+//      drawStamp(positions, stampNose, 62, 7.0, 0.0, 0.5);   // ★鼻のスタンプを描画
+//    }
+//  } else {
+//    initDisplayEmotion();
+//  }
+//  requestAnimationFrame(drawLoop);
+
   requestAnimationFrame(drawLoop);                      // drawLoop 関数を繰り返し実行
-  var positions = track.getCurrentPosition();         // 顔部品の現在位置の取得
+  var positions = track.getCurrentPosition();          // 顔部品の現在位置の取得
   context.clearRect(0, 0, canvas.width, canvas.height); // canvas をクリア
   //tracker.draw(canvas);                                 // canvas にトラッキング結果を描画
-//  drawStamp(positions, stampNose, 62, 2.5, 0.0, 0.0);   // ★鼻のスタンプを描画
-//  drawStamp(positions, stampEars, 33, 3.0, 0.0, -1.8);  // ★耳のスタンプを描画
+  drawStamp(positions, stampNose, 62, 7.0, 0.0, 0.5);   // ★鼻のスタンプを描画
+  drawStamp(positions, stampEars, 33, 3.0, 0.0, -1.8);  // ★耳のスタンプを描画
   drawStamp(positions, stampEye, 33, 2.5, 0.0, 0.0);   // ★目のスタンプを描画
 
 }
@@ -137,19 +158,6 @@ function determineEmotion() {
       if (value) {
         score = value.toFixed(1) * 100;
         switch(emotion) {
-          case 'sad':
-            sadText.innerText = score;
-            sadText.parentNode.style.width = 100 + score + 'px';
-            if (80 < score) {
-              mosaicSize = 16;
-              isSad = true;
-            } else if (60 < score) {
-              mosaicSize = 8;
-              isSad = true;
-            } else {
-              isSad = false;
-            }
-            break;
           case 'happy':
             happyText.innerText = score;
             happyText.parentNode.style.width = 100 + score + 'px';
@@ -177,10 +185,10 @@ function determineEmotion() {
 }
 
 function initDisplayEmotion() {
-  sadText.innerText = 0;
-  sadText.parentNode.style.width = 100 + 'px';
-  happyText.innerText = 0;
-  happyText.parentNode.style.width = 100 + 'px';
+//  sadText.innerText = 0;
+//  sadText.parentNode.style.width = 100 + 'px';
+//  happyText.innerText = 0;
+//  happyText.parentNode.style.width = 100 + 'px';
 }
 
 function makeRosesBloom(level) {
