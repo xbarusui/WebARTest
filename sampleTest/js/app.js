@@ -128,7 +128,7 @@ function drawLoop() {
   //tracker.draw(canvas);                                 // canvas にトラッキング結果を描画
   drawStamp(positions, stampNose, 62, 7.0, 0.0, 0.5);   // ★鼻のスタンプを描画
   drawStamp(positions, stampEars, 33, 3.0, 0.0, -1.8);  // ★耳のスタンプを描画
-  drawStamp(positions, stampEye, 33, 2.5, 0.0, 0.0);   // ★目のスタンプを描画
+//  drawStamp(positions, stampEye, 33, 2.5, 0.0, 0.0);   // ★目のスタンプを描画
 
 }
 
@@ -187,8 +187,8 @@ function determineEmotion() {
 function initDisplayEmotion() {
 //  sadText.innerText = 0;
 //  sadText.parentNode.style.width = 100 + 'px';
-//  happyText.innerText = 0;
-//  happyText.parentNode.style.width = 100 + 'px';
+  happyText.innerText = 0;
+  happyText.parentNode.style.width = 100 + 'px';
 }
 
 function makeRosesBloom(level) {
