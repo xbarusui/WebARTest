@@ -111,7 +111,7 @@ function drawLoop() {
       createMosaic(mosaicSize);
     }
     if (isHappy) {
-      makeRosesBloom(happyLevel);
+//      makeRosesBloom(happyLevel);
       drawStamp(positions, stampNose, 62, 7.0, 0.0, 0.5);   // ★鼻のスタンプを描画    }
   } else {
     initDisplayEmotion();
