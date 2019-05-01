@@ -104,6 +104,8 @@ function drawLoop() {
   // canvasの情報を取得
   imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
+  var positions = track.getCurrentPosition();   
+
   if (track.getCurrentPosition()) {
     // 顔のパーツの現在位置が存在
     determineEmotion();
