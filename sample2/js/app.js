@@ -110,10 +110,10 @@ function drawLoop() {
     // 顔のパーツの現在位置が存在
     determineEmotion();
     if (isSad) {
-      createMosaic(mosaicSize);
+//      createMosaic(mosaicSize);
     }
     if (isHappy) {
-      makeRosesBloom(happyLevel);
+//      makeRosesBloom(happyLevel);
       drawStamp(positions, stampNose, 62, 7.0, 0.0, 0.5);   // ★鼻のスタンプを描画    }
 
     }
