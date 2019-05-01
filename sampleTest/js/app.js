@@ -6,12 +6,12 @@ var gallary = document.getElementById('gallary');
 var sadText = document.getElementById('sadText');
 var happyText = document.getElementById('happyText');
 
-var stampNose = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
-var stampEars = new Image();                            // ★耳のスタンプ画像を入れる Image オブジェクト
-var stampEye = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
-stampNose.src = "frikora.png";                             // ★鼻のスタンプ画像のファイル名
-stampEars.src = "ears.png";                             // ★耳のスタンプ画像のファイル名
-stampEye.src = "frikora.png"
+//var stampNose = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
+//var stampEars = new Image();                            // ★耳のスタンプ画像を入れる Image オブジェクト
+//var stampEye = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
+//stampNose.src = "frikora.png";                             // ★鼻のスタンプ画像のファイル名
+//stampEars.src = "ears.png";                             // ★耳のスタンプ画像のファイル名
+//stampEye.src = "frikora.png"
 
 var isTracking = false;
 var isHappy = false;
@@ -111,8 +111,8 @@ function drawLoop() {
       createMosaic(mosaicSize);
     }
     if (isHappy) {
-//      makeRosesBloom(happyLevel);
-      drawStamp(positions, stampNose, 62, 7.0, 0.0, 0.5);   // ★鼻のスタンプを描画    }
+      makeRosesBloom(happyLevel);
+//      drawStamp(positions, stampNose, 62, 7.0, 0.0, 0.5);   // ★鼻のスタンプを描画    }
   } else {
     initDisplayEmotion();
   }
@@ -121,16 +121,16 @@ function drawLoop() {
 
 // ★スタンプを描く drawStamp 関数
 // (顔部品の位置データ, 画像, 基準位置, 大きさ, 横シフト, 縦シフト)
-function drawStamp(pos, img, bNo, scale, hShift, vShift) {
-  var eyes = pos[32][0] - pos[27][0];                   // 幅の基準として両眼の間隔を求める
-  var nose = pos[62][1] - pos[33][1];                   // 高さの基準として眉間と鼻先の間隔を求める
-  var wScale = eyes / img.width;                        // 両眼の間隔をもとに画像のスケールを決める
-  var imgW = img.width * scale * wScale;                // 画像の幅をスケーリング
-  var imgH = img.height * scale * wScale;               // 画像の高さをスケーリング
-  var imgL = pos[bNo][0] - imgW / 2 + eyes * hShift;    // 画像のLeftを決める
-  var imgT = pos[bNo][1] - imgH / 2 + nose * vShift;    // 画像のTopを決める
-  context.drawImage(img, imgL, imgT, imgW, imgH);       // 画像を描く
-}
+//function drawStamp(pos, img, bNo, scale, hShift, vShift) {
+//  var eyes = pos[32][0] - pos[27][0];                   // 幅の基準として両眼の間隔を求める
+//  var nose = pos[62][1] - pos[33][1];                   // 高さの基準として眉間と鼻先の間隔を求める
+//  var wScale = eyes / img.width;                        // 両眼の間隔をもとに画像のスケールを決める
+//  var imgW = img.width * scale * wScale;                // 画像の幅をスケーリング
+//  var imgH = img.height * scale * wScale;               // 画像の高さをスケーリング
+//  var imgL = pos[bNo][0] - imgW / 2 + eyes * hShift;    // 画像のLeftを決める
+//  var imgT = pos[bNo][1] - imgH / 2 + nose * vShift;    // 画像のTopを決める
+//  context.drawImage(img, imgL, imgT, imgW, imgH);       // 画像を描く
+//}
 
 function determineEmotion() {
   // 顔の顔のパーツのパラメータ
