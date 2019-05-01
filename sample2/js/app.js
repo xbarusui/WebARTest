@@ -9,9 +9,9 @@ var happyText = document.getElementById('happyText');
 var stampNose = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
 var stampEars = new Image();                            // ★耳のスタンプ画像を入れる Image オブジェクト
 var stampEye = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
-stampNose.src = "frikora.png";                             // ★鼻のスタンプ画像のファイル名
-stampEars.src = "ears.png";                             // ★耳のスタンプ画像のファイル名
-stampEye.src = "frikora.png"
+stampNose.src = "./frikora.png";                             // ★鼻のスタンプ画像のファイル名
+stampEars.src = "./ears.png";                             // ★耳のスタンプ画像のファイル名
+stampEye.src = "./frikora.png"
 
 var isTracking = false;
 var isHappy = false;
