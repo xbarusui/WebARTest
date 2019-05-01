@@ -127,7 +127,7 @@ function drawLoop() {
   context.clearRect(0, 0, canvas.width, canvas.height); // canvas をクリア
   //tracker.draw(canvas);                                 // canvas にトラッキング結果を描画
   drawStamp(positions, stampNose, 62, 7.0, 0.0, 0.5);   // ★鼻のスタンプを描画
-  drawStamp(positions, stampEars, 33, 3.0, 0.0, -1.8);  // ★耳のスタンプを描画
+//  drawStamp(positions, stampEars, 33, 3.0, 0.0, -1.8);  // ★耳のスタンプを描画
 //  drawStamp(positions, stampEye, 33, 2.5, 0.0, 0.0);   // ★目のスタンプを描画
 
 }
