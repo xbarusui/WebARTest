@@ -106,7 +106,7 @@ function drawLoop() {
 
   var positions = track.getCurrentPosition();   
 
-  drawStamp(positions, stampEars, 33, 3.0, 0.0, -1.8);   // ★目のスタンプを描画    }
+//  drawStamp(positions, stampEars, 33, 3.0, 0.0, -1.8);   // ★目のスタンプを描画    }
 
   if (track.getCurrentPosition()) {
     // 顔のパーツの現在位置が存在
