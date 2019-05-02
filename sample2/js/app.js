@@ -106,7 +106,7 @@ function drawLoop() {
 
   var positions = track.getCurrentPosition();   
 
-  drawStamp(positions, stampEars, 33, 5.0, 0.0, 0);   // ★耳のスタンプを描画    }
+//  drawStamp(positions, stampEars, 33, 5.0, 0.0, 0);   // ★耳のスタンプを描画    }
 
   if (track.getCurrentPosition()) {
     // 顔のパーツの現在位置が存在
@@ -117,6 +117,7 @@ function drawLoop() {
     if (isHappy) {
 //      makeRosesBloom(happyLevel);
       drawStamp(positions, stampNose, 62, 7.0, 0.0, 0.5);   // ★鼻のスタンプを描画    }
+      drawStamp(positions, stampEars, 33, 5.0, 0.0, 0);   // ★耳のスタンプを描画    }
 
     }
   } else {
