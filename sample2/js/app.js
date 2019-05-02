@@ -11,7 +11,7 @@ var stampEars = new Image();                            // ★耳のスタンプ
 var stampEye = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
 stampNose.src = "./frikora.png";                             // ★鼻のスタンプ画像のファイル名
 stampEars.src = "./ears.png";                             // ★耳のスタンプ画像のファイル名
-stampEye.src = "./frikora.png"
+stampEye.src = "./mask.png"
 
 var isTracking = false;
 var isHappy = false;
@@ -105,6 +105,8 @@ function drawLoop() {
   imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
   var positions = track.getCurrentPosition();   
+
+  drawStamp(positions, stampEye, 33, 3.5, 0.0, 0.5);   // ★目のスタンプを描画    }
 
   if (track.getCurrentPosition()) {
     // 顔のパーツの現在位置が存在
