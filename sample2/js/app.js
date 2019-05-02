@@ -3,7 +3,7 @@ var canvas = document.getElementById('overlay');
 var context = canvas.getContext('2d');
 var button = document.getElementById('button');
 var gallary = document.getElementById('gallary');
-var sadText = document.getElementById('sadText');
+//var sadText = document.getElementById('sadText');
 var happyText = document.getElementById('happyText');
 
 var stampNose = new Image();                            // ★鼻のスタンプ画像を入れる Image オブジェクト
@@ -151,19 +151,6 @@ function determineEmotion() {
       if (value) {
         score = value.toFixed(1) * 100;
         switch(emotion) {
-          case 'sad':
-            sadText.innerText = score;
-            sadText.parentNode.style.width = 100 + score + 'px';
-            if (80 < score) {
-              mosaicSize = 16;
-              isSad = true;
-            } else if (60 < score) {
-              mosaicSize = 8;
-              isSad = true;
-            } else {
-              isSad = false;
-            }
-            break;
           case 'happy':
             happyText.innerText = score;
             happyText.parentNode.style.width = 100 + score + 'px';
@@ -191,8 +178,8 @@ function determineEmotion() {
 }
 
 function initDisplayEmotion() {
-  sadText.innerText = 0;
-  sadText.parentNode.style.width = 100 + 'px';
+//  sadText.innerText = 0;
+//  sadText.parentNode.style.width = 100 + 'px';
   happyText.innerText = 0;
   happyText.parentNode.style.width = 100 + 'px';
 }
