@@ -1,64 +1,222 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AR 名刺 API テスト用 html</title>
+    <style>
+        body {
+            background-color: #eee;
+        }
+        section {
+            margin-bottom: 1.5em;
+            padding-bottom: 1.5em;
+            width: 80%;
+            border-bottom: 2px #ccc solid;
+        }
+        input[type=text] {
+            height: 2em;
+            width: 30em;
+            padding: 0.5em;
+            margin-left: 1.2em;
+            border-radius: 10px;
+            border: 2px #ccc solid;
+        }
+        label {
+            display: inline-block;
+            width: 5em;
+        }
+        input[type=submit] {
+            width: 20%;
+            height: 2em;
+            background-color: aqua;
+            border: 2px #ccc solid;
+            border-radius: 10px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>AR 名刺 API テスト用 html</h1>
+        <section class="resource get">
+            <h2>resources ( get )</h2>
+            <form action="https://asia-northeast1-ar-business-card-functions.cloudfunctions.net/api/v1/resources/" method="get" name="resource__get__form">
+                <p>
+                    <label for="id">ID</label>
+                    <input type="text" name="id" id="resource__get__id">
+                </p>
+                <p>
+                    <input type="submit" value="submit" onClick="submit_get_id();return false;">
+                </p>
+                <script lang="text/javascript">
+                    function submit_get_id() {
+                        const resources_get_form = document.querySelector('section.resource.get > form');
+                        const resources_get_target_id = document.querySelector('#resource__get__id').value;
+                        const resources_get_url = resources_get_form.action;
+                        resources_get_form.action = resources_get_url + resources_get_target_id;
 
-        <!-- A-Frame ライブラリの読み込み -->
-        <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+                        document.resource__get__form.submit();
+                    }
+                </script>
+            </form>
+        </section>
+        <section class="resources post">
+            <h2>resources ( post )</h2>
+            <form action="" method="post">
+                <p>
+                    <label for="name">name</label>
+                    <input type="text" name="name" id="resources__post__name" value="twitter">
+                </p>
+                <p>
+                    <label for="facebookId">facebookId</label>
+                    <input type="text" name="facebookId" id="resources__post__facebookId" value="facebook">
+                </p>
+                <p>
+                    <label for="instagramId">instagramId</label>
+                    <input type="text" name="instagramId" id="resources__post__instagramId" value="instagram">
+                </p>
+                <p>
+                    <label for="lineId">lineId</label>
+                    <input type="text" name="lineId" id="resources__post__lineId" value="line">
+                </p>
+                <p>
+                    <label for="twitterId">twitterId</label>
+                    <input type="text" name="twitterId" id="resources__post__twitterId" value="twitter">
+                </p>
+                <p>
+                    <label for="url">url</label>
+                    <input type="text" name="url" id="resources__post__url" value="url">
+                </p>
+                <p>
+                    <label for="email">email</label>
+                    <input type="text" name="email" id="resources__post__email" value="email">
+                </p>
+                <p>
+                    <input type="submit" value="submit" onClick="post_resources();return false;">
+                </p>
+                <script lang="text/javascript">
+                    /**
+                     * リソース登録 API を POST します
+                     */
+                    function post_resources() {
+                        const BASE_URL = "https://asia-northeast1-ar-business-card-functions.cloudfunctions.net/api/v1/resources/";
 
-        <!-- AR.js ライブラリの読み込み -->
-        <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+                        const r = new XMLHttpRequest();
 
-        <title>WebAR Demo</title>
-    </head>
+                        const sendOption = 
+                            'name=' + document.querySelector('#resources__post__name').value
+                            + '&facebookId=' + document.querySelector('#resources__post__facebookId').value
+                            + '&instagramId=' + document.querySelector('#resources__post__instagramId').value
+                            + '&lineId=' + document.querySelector('#resources__post__lineId').value
+                            + '&twitterId=' + document.querySelector('#resources__post__twitterId').value
+                            + '&url=' + document.querySelector('#resources__post__url').value
+                            + '&email=' + document.querySelector('#resources__post__email').value;
 
+                        r.open('POST', BASE_URL, true);
+                        r.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+                        r.onreadystatechange = function () {
+                            if (r.readyState != 4 || r.status != 200) return;
+                            alert('Success: ' + r.responseText);
+                        };
 
-    <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+                        console.log(sendOption);
+                        r.send(sendOption);
 
-        <!-- 3Dオブジェクトの読み込み -->
-        <!-- OBJファイルはモデル形状、MTLファイルはテクスチャ情報 -->
-        <!-- ここで指定したIDを呼び出し時に使う -->
-        <a-assets>
-            <a-asset-item id="signpanel_mtl" src="static/models/signpanel/signpanel.mtl"></a-asset-item>
-            <a-asset-item id="signpanel_obj" src="static/models/signpanel/signpanel.obj"></a-asset-item>
-        </a-assets>
+                        return false;
+                    }
+                </script>
+            </form>
+        </section>
+        <section class="resources upload__images">
+            <h2>resources/upload-images ( post )</h2>
+            <form action="" method="post" name="resource__upload__images__form">
+                <p>
+                    <label for="id">ID</label>
+                    <input type="text" name="id" id="resources__upload__images__id">
+                </p>
+                <p>
+                    <label for="thumbnail">thumbnail</label>
+                    <input type="file" name="thumbnail" id="resources__upload__images__thumbnail">
+                    <img id="resources__images__thumbnail__preview"/>
+                </p>
+                <p>
+                    <label for="marker">marker</label>
+                    <input type="file" name="marker" id="resources__upload__images__marker">
+                    <img id="resources__images__marker__preview"/>
+                </p>
+                <p>
+                    <input type="submit" value="submit" onClick="submit_file_upload();return false;">
+                </p>
+                <script lang="text/javascript">
+                    /**
+                     * ファイルアップロードのAPIを実行します。
+                     */
+                    function submit_file_upload() {
+                        const BASE_URL = "https://asia-northeast1-ar-business-card-functions.cloudfunctions.net/api/v1/resources/upload-images/";
+                        const resources_upload_images_target_id = document.querySelector('#resources__upload__images__id').value;
 
-        <a-assets>
-            <a-asset-item id="grass_obj" src="static/models/grass/grass.obj"></a-asset-item>
-            <a-asset-item id="grass_mtl" src="static/models/grass/grass.mtl"></a-asset-item>
-        </a-assets>
+                        const r = new XMLHttpRequest();
 
-        <!-- ARオブジェクトを描画するシーンの定義 -->
-        <a-scene stats embedded arjs='debugUIEnabled: false; sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180'>
-            <!-- ARマーカに対する描画オブジェクト -->
-            <a-marker preset="custom" type="pattern" url="static/marker/pattern.patt">
-                <!-- オブジェクト1つめの配置 -->
-                <a-obj-model src="#signpanel_obj" mtl="#signpanel_mtl" position="0 0 0" rotation="-100 0 0" scale="0.05 0.05 0.05" visible="true"></a-obj-model>
+                        r.open('POST', BASE_URL + resources_upload_images_target_id, true);
+                        r.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+                        r.onreadystatechange = function () {
+                            if (r.readyState != 4 || r.status != 200) return;
+                            alert('Success: ' + r.responseText);
+                        };
 
-                <!-- a-entityタグでオブジェクトやアニメーションの定義をまとめる -->
-                <a-entity>
-                    <a-obj-model src="#grass_obj" mtl="#grass_mtl" position="-0.3 0 0" rotation="-90 0 0" scale="0.03 0.03 0.03" visible="true"></a-obj-model>
-                    <!-- アニメーションもHTMLタグで定義可能 -->
-                    <a-animation attribute="rotation" dur="5000" fill="forwards" to="0 360 0" repeat="indefinite"></a-animation>
-                </a-entity>
+                        /*
+                         * サムネイルを base64 にする
+                         * マーカーを base64 にする
+                         * 両方が defferd したら送信する
+                         */
+                        let thumbnailToBase64Promise = toBase64(document.querySelector('#resources__upload__images__thumbnail'));
+                        let markerToBase64Promise = toBase64(document.querySelector('#resources__upload__images__marker'));
 
-                <!-- テキストも描画可能 -->
-                <a-text value="Augmented" position='-0.8 1.9 -0.1' rotation="0 0 0" scale="1.5 1.5 1.5" color="#111111"></a-text>
-                <a-text value="Reality" position='-0.3 1.3 -0.1' rotation="0 0 0" scale="1.5 1.5 1.5" color="#111111"></a-text>
-            </a-marker>
+                        Promise.all([thumbnailToBase64Promise, markerToBase64Promise]).then(values => {
+                            const sendOption = 
+                                'id=' + resources_upload_images_target_id 
+                                + '&thumbnail=' + values[0]['content'] 
+                                + '&thumbnailMimeType=' + values[0]['mimeType']
+                                + '&marker=' + values[1]['content']
+                                + '&markerMimeType=' + values[1]['mimeType'];
 
-            <!-- マルチマーカの場合はa-markerタグを複数書く -->
-            <a-marker preset="custom" type="pattern" url="static/marker/pattern2.patt">
-                <a-obj-model src="#signpanel_obj" mtl="#signpanel_mtl" position="0 0 0" rotation="-100 0 0" scale="0.05 0.05 0.05" visible="true"></a-obj-model>
-                <a-entity>
-                    <a-obj-model src="#grass_obj" mtl="#grass_mtl" position="-0.3 0 0" rotation="-90 0 0" scale="0.03 0.03 0.03" visible="true"></a-obj-model>
-                    <a-animation attribute="rotation" dur="5000" fill="forwards" to="0 360 0" repeat="indefinite"></a-animation>
-                </a-entity>
-                <a-text value="Multi Marker" position='-0.7 1.7 -0.1' rotation="0 0 0" scale="1.2 1.2 1.2" color="#111111"></a-text>
-            </a-marker>
+                            console.log(sendOption);
+                            r.send(sendOption);
+                        });
 
-            <!-- カメラオブジェクトの配置 -->
-            <a-camera-static/>
-        </a-scene>
-    </body>
+                        return false;
+                    }
+
+                    /**
+                     * input type file を base64 変換します。
+                     * return Promise
+                     */
+                    function toBase64(element) {
+                        return new Promise( (resolve, reject) => {
+                            if (!element.files.length) return;
+
+                            const file = element.files[0];
+                            const extension = file.name.split('.').pop();
+                            const mimeType = file.type;
+
+                            if (!/(png|PNG|jpg|jpeg|JPG|JPEG)$/.test(extension)) return;
+
+                            const fileReader = new FileReader();
+                            fileReader.onload = (event) => {
+                                resolve({
+                                    mimeType: mimeType,
+                                    content: encodeURIComponent(event.target.result.split('base64,')[1])
+                                });
+                            };
+                            fileReader.readAsDataURL(file);
+                        });
+                    }
+                </script>
+            </form>
+
+        </section>
+    </main>
+</body>
 </html>
